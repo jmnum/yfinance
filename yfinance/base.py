@@ -328,7 +328,7 @@ class TickerBase():
             try:
               tkr_tz = self.info["exchangeTimezoneName"]
             except:
-              tkr_tz = None
+              tkr_tz = "America/New_York"
             # info fetch is relatively slow so cache timezone
             utils.cache_store_tkr_tz(self.ticker, tkr_tz)
 
