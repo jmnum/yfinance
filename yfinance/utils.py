@@ -322,8 +322,10 @@ def cache_lookup_tkr_tz(tkr):
     fp = _os.path.join(get_cache_dirpath(), "tkr-tz.csv")
     if not _os.path.isfile(fp):
         return None
-
-    df = _pd.read_csv(fp)
+    try:
+      df = _pd.read_csv(fp)
+    except:
+      return None
     f = df["Ticker"] == tkr
     if sum(f) == 0:
         return None
