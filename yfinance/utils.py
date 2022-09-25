@@ -341,8 +341,10 @@ def cache_store_tkr_tz(tkr,tz):
     if not _os.path.isfile(fp):
         df.to_csv(fp, index=False)
         return
-
-    df_all = _pd.read_csv(fp)
+    try:
+      df_all = _pd.read_csv(fp)
+    except:
+      return None  
     f = df_all["Ticker"]==tkr
     if sum(f) > 0:
         raise Exception("Tkr {} tz already in cache".format(tkr))
